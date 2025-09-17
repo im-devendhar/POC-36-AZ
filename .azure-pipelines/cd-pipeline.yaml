@@ -4,8 +4,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  webAppName: '<YOUR-APP-SERVICE-NAME>'   # Replace
-  azureServiceConnection: '<YOUR-SERVICE-CONNECTION-NAME>' # Replace
+  webAppName: 'nodejs-cicd-demo'   
+  azureServiceConnection: 'NodeJS-CI-CD-Connection' # Replace
 
 steps:
   - download: current
