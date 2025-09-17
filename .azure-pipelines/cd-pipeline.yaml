@@ -1,0 +1,19 @@
+trigger: none   # Manual or from Release pipeline
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  webAppName: '<YOUR-APP-SERVICE-NAME>'   # Replace
+  azureServiceConnection: '<YOUR-SERVICE-CONNECTION-NAME>' # Replace
+
+steps:
+  - download: current
+    artifact: drop
+    displayName: 'Download build artifact'
+
+  - task: AzureWebApp@1
+    inputs:
+      azureSubscription: '$(azureServiceConnection)'
+      appName: '$(webAppName)'
+      package: '$(Pipeline.Workspace)/drop/drop.zip'
