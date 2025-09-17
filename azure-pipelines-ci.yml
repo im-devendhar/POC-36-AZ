@@ -1,0 +1,33 @@
+# azure-pipelines-ci.yml
+name: $(Date:yyyyMMdd)$(Rev:.r)
+
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  node_version: '18.x'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '$(node_version)'
+  displayName: 'Use Node $(node_version)'
+
+- script: npm ci
+  displayName: 'Install dependencies (npm ci)'
+
+- script: npm test --silent
+  displayName: 'Run unit tests'
+
+- script: npm run build --if-present
+  displayName: 'Build (if present)'
+
+# Publish the whole repo as artifact "drop" (CD will consume it)
+- publish: $(System.DefaultWorkingDirectory)
+  artifact: drop
+  displayName: 'Publish artifact: drop'
