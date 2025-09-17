@@ -1,11 +1,11 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-  res.send('Hello from Azure DevOps Node.js App!');
+app.get("/", (req, res) => {
+  res.send("Hello from Node.js App deployed via Azure CI/CD 🚀");
 });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
