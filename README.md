@@ -98,6 +98,58 @@ To allow your pipeline to deploy to Azure App Service, you need to create a Serv
 2. Azure DevOps will create the connection and verify access to your subscription/resource group.
 3. You can now use this connection in your pipeline YAML under `azureSubscription`.
 
+   
+## Step 7: Create CI/CD Pipeline for Node.js Express App
+
+This step sets up the **Azure DevOps pipeline** to automatically build, test, and deploy your Node.js Express app from GitHub to Azure App Service.
+
+---
+
+### 7.1: Create a New Pipeline
+
+1. Open your **Azure DevOps Project** → go to **Pipelines → Create Pipeline**.
+2. Select **GitHub** as the repository source.
+3. Authorize Azure DevOps to access your GitHub account.
+4. Select the repository containing your Node.js Express app.
+5. When prompted to select a template, choose **Node.js Express Web app to Linux on Azure**.
+
+---
+
+### 7.2: Configure Pipeline
+
+1. Use the default pipeline template or customize it as needed.
+2. Set your **Azure Service Connection** (created in Step 6) so the pipeline can deploy to Azure.
+3. Set your **App Service Name** to match the one you created (e.g., `nodejs-cicd-demo`).
+4. Configure the pipeline to:
+   - Install Node.js
+   - Install project dependencies
+   - Build the app (if applicable)
+   - Run tests (optional)
+   - Package artifacts for deployment
+   - Deploy to Azure App Service
+
+---
+
+### 7.3: Run the Pipeline
+
+1. Commit your pipeline configuration to your GitHub repository.
+2. In Azure DevOps → **Pipelines**, click **Run pipeline** → select the branch (e.g., `main`) → click **Run**.
+3. The pipeline will:
+   - Pull code from GitHub
+   - Build and test your app
+   - Deploy it to Azure App Service
+
+---
+
+### 7.4: Verify Deployment
+
+- Open your browser → go to your App Service URL, e.g., `https://nodejs-cicd-demo.azurewebsites.net`.
+- You should see your Node.js app running (e.g., `Hello from Node.js CI/CD with Azure 🚀`).
+
+---
+
+✅ Now, **every push to the main branch** will automatically trigger the pipeline to build and deploy your Node.js Express app to Azure.
+
 ---
 
 ✅ Your pipeline can now securely deploy your Node.js application to Azure App Service.
