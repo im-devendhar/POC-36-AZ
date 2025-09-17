@@ -54,6 +54,54 @@ This project demonstrates a full **CI/CD pipeline** for a Node.js web applicatio
 - **Resource Group Name** → e.g., `nodejs-cicd-rg`.  
 - **Subscription ID** → for creating Azure DevOps service connection.  
 
+# 🔵 Step 6: Create an Azure Service Connection in Azure DevOps
+
+To allow your pipeline to deploy to Azure App Service, you need to create a Service Connection.
+
+---
+
+## 1️⃣ Navigate to Service Connections
+
+1. Open your **Azure DevOps Project**.
+2. Click **Project Settings** (bottom-left corner).
+3. Under **Pipelines**, select **Service connections**.
+4. Click **New service connection** → choose **Azure Resource Manager** → **Next**.
+
+---
+
+## 2️⃣ Configure the Service Connection
+
+- **Identity Type:** `App registration (automatic)`  
+  - Azure DevOps will automatically create a service principal for secure access.
+
+- **Credential:** `Workload identity federation`  
+  - Recommended for secure authentication without storing secrets.
+
+- **Scope Level:** `Subscription`  
+  - Gives access to your Azure subscription.  
+  - *(Optional)* To restrict access, select **Resource Group** → `nodejs-cicd-rg`.
+
+- **Service Connection Name:** `NodeJS-CI-CD-Connection`  
+  - Use a meaningful name to reference it in your pipeline.
+
+- **Service Management Reference:** Leave blank unless your organization requires it.
+
+- **Description:** `Service connection for Node.js CI/CD pipeline` (optional)
+
+- **Security:** Check **Grant access permission to all pipelines** ✅
+
+---
+
+## 3️⃣ Save the Service Connection
+
+1. Click **Save**.
+2. Azure DevOps will create the connection and verify access to your subscription/resource group.
+3. You can now use this connection in your pipeline YAML under `azureSubscription`.
+
+---
+
+✅ Your pipeline can now securely deploy your Node.js application to Azure App Service.
+
 ---
 
 Once these resources are ready, you can connect Azure DevOps pipelines to deploy your Node.js app automatically.
