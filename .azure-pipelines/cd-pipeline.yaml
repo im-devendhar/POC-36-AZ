@@ -5,7 +5,7 @@ pool:
 
 variables:
   webAppName: 'nodejs-cicd-demo'   
-  azureServiceConnection: 'NodeJS-CI-CD-Connection' # Replace
+  azureServiceConnection: 'NodeJS-CI-CD-Connection' 
 
 steps:
   - download: current
