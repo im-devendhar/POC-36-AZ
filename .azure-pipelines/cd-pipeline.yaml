@@ -1,7 +1,7 @@
 trigger: none   # Manual or from Release pipeline
 
 pool:
-  vmImage: 'ubuntu-latest'
+  name: SelfHostedPool   # Use your custom agent pool
 
 variables:
   webAppName: 'nodejs-cicd-demo'   
@@ -17,3 +17,4 @@ steps:
       azureSubscription: '$(azureServiceConnection)'
       appName: '$(webAppName)'
       package: '$(Pipeline.Workspace)/drop/drop.zip'
+    displayName: 'Deploy to Azure Web App'
